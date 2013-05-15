@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe Question do
 
+  let(:question) { FactoryGirl.build(:question) }
+  subject { question }
+
+
   describe "#index" do
     it "should show questions" do
       pending
