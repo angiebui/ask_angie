@@ -1,0 +1,11 @@
+<h2> Ask Question </h2>
+<div class="question-form">
+  <span class="errors"><%= flash[:error] if flash[:error] %></span>
+  <%= form_for @question  do |f| %>
+    <p><%= f.label "Title" %></p>
+    <p><%= f.text_field :title %></p>
+    <p><%= f.label "Question" %></p>
+    <p><%= f.text_area :body %></p>
+    <p><%= f.submit "ask question" %></p>
+  <% end %>
+</div>

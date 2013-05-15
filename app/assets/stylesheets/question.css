@@ -1,0 +1,9 @@
+.question-form {
+  padding:5px;
+  margin-bottom: 10px;
+}
+
+.question-form span {
+  color:red;
+  margin: 0px;
+}
