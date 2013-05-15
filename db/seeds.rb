@@ -10,13 +10,14 @@
 users = User.create([
   {username: "Angie", password: "password", email: "angie@gmail.com", gender: "female"}, 
   {username: "Sean", password: "password", email: "sean@gmail.com", gender: "male"},
+  {username: "Jkai", email: "jkai@gmail.com", password: "password", gender: "male"}
   ])
 
 
 answers = Answer.create([
   {question_id: 1, user_id: 1, body: "I think it's a jewelry"}, 
   {question_id: 1, user_id: 2, body: "It's definitely a girl's name"},
-  {question_id: 2, user_id: 3, body: "Chicago"}, 
+  {question_id: 2, user_id: 3, body: "She's mad at you, bro!"}, 
   ])
 
 
