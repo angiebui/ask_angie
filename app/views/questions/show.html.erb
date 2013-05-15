@@ -1,4 +1,18 @@
-<h3><%= @question.title %> </h3>
+<h3>Question: <%= @question.title %> </h3>
 <hr>
 <%= @question.body %>
-<%= @question.user.username %>
+<br><small><%= @question.user.username if @question.user %></small>
+
+<hr>
+<h4>Answers</h4>
+<% if @question.answers %>
+  <% @question.answers do |answer| %>
+      <p><%= answer.body %></p>
+      <p><small><%= answer.user.username %></small></p>
+  <% end %>
+<% end %>
+
+<%= form_for [@question, @answer] do |f| %>
+  <%= f.text_field :body %>
+  <%= f.submit "Answer" %>
+<% end %>

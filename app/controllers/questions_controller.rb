@@ -11,6 +11,8 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(params[:question])
+    @answer = Answer.new
+
     if @question.save
       redirect_to @question
     else
@@ -21,6 +23,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    @answer = Answer.new
   end
 
 end
