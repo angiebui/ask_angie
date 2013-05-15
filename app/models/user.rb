@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :votes
   has_many :answers
 
-  attr_accessible :username, :email, :password
+  attr_accessible :username, :email, :password, :gender
 
   validates :username, :email, :password, :presence => true  
   validates :username, :email, :uniqueness => true

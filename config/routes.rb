@@ -4,9 +4,17 @@ DbcOverflow::Application.routes.draw do
     resources :answers
   end
 
-  match '/user/:id' => 'user#show'
+  resources :users do
+    collection do 
+      get  'login'
+      post 'login'
+      delete 'signout'
+    end
+  end
 
-  root :to => 'questions#index'
+  # root :to => 'questions#index'
+  root :to => 'home#index'
 
+  
 end
 
