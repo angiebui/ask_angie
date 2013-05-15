@@ -5,14 +5,14 @@
 
 <hr>
 <h4>Answers</h4>
-<% if @question.answers %>
-  <% @question.answers do |answer| %>
-      <p><%= answer.body %></p>
-      <p><small><%= answer.user.username %></small></p>
+<% if @question.answers.any? %>
+  <% @question.answers.each do |answer| %>
+      <p><%= answer.body %>
+      <small><%= answer.user.username %></small></p>
   <% end %>
 <% end %>
 
 <%= form_for [@question, @answer] do |f| %>
-  <%= f.text_field :body %>
-  <%= f.submit "Answer" %>
+  <%= f.text_field :body, placeholder: "What are your thoughts?" %>
+  <%= f.submit "Add answer" %>
 <% end %>
