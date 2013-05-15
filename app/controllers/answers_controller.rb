@@ -10,7 +10,7 @@ class AnswersController < ApplicationController
     if @answer.save
       redirect_to @question
     else
-      "Error here"
+      "Please add a body"
     end
   end
 

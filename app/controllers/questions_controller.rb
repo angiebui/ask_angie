@@ -1,9 +1,4 @@
 class QuestionsController < ApplicationController
-  # before_filter :get_user 
-
-  # def get_user
-  #   @question.user_id = 1
-  # end
 
   def new
     @question = Question.new
