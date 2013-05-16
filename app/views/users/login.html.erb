@@ -1,8 +1,8 @@
-<h2>Welcome to the Login Page</p>
+<h2>Welcome to the Login Page</h2>
 
 <% if flash[:notice] %>
   <p> <%= flash[:notice] %>  </p>
  <% end %> 
 
 
-<%= render :partial => "login" %>
+<%= render :partial => "login", :formats => [:html] %>

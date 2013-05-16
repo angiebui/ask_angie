@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Question do
+describe 'Question' do
 
   let(:question) { FactoryGirl.build(:question) }
   subject { question }
@@ -13,18 +13,31 @@ describe Question do
   end
 
   describe "#create" do
+
     context "with valid input" do
-      it "creates a new Question" do
-        pending
+      it "creates a new Question and views it" do
+        visit new_question_path
 
-      end
-    end
+        expect {
+          fill_in 'question_title', with: "Ruby Question"
+          fill_in 'question_body', with: "what is ruby?"
+          click_button 'ask question'
+          }.to change(Question, :count).by(1)
 
-    context "with invalid input" do
-      it "throws an error when not given the right fields" do
-        pending
+          page.should have_content("Ruby Question")
+          page.should have_content("what is ruby?")
 
+        # as a user, submitting valid question input, we should enter Q into db, and see it 
       end
     end
   end
+
+  context "with invalid input" do
+    it "throws an error when not given the right fields" do
+      visit new_question_path
+
+    end
+  end
 end
+
+
