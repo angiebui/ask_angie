@@ -12,4 +12,8 @@ class Answer < ActiveRecord::Base
     QuestionMailer.answer_notification(self).deliver
   end
 
+  def time_ago 
+    ((Time.now - self.created_at) / 1.hour).round
+  end
+
 end

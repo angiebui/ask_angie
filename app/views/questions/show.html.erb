@@ -6,23 +6,26 @@
 <br><small><%= link_to @question.user.username, @question.user %></small>
 
 <hr>
-
-<div class="answers">
-  <h4>Answers</h4>
-  <% @question.answers.each do |answer| %>
-      <p>
-        <%= image_tag 'uparrow.png', class: 'upvote', :data => {:answer_id =>  answer.id} %><br>
-        <%= image_tag 'downarrow.png', class: 'downvote', :data => {:answer_id =>  answer.id} %>
-        <%= answer.body %>
-        <small><%= answer.user.username %></small>
-      </p>
-  <% end %>
-</div>
-
 <%= form_for [@answer] do |f| %>
   <%= f.hidden_field :question_id, :value => @question.id %>
   <%= f.text_field :body, placeholder: "What are your thoughts?" %> 
   <%= f.submit "Add answer" %>
 <% end %>
 <p><%= flash[:notice] if flash[:notice] %></p>
+<div class="answers">
+  <h4>Answers</h4>
+  <% @question.answers.each do |answer| %>
+      <div class="votes">
+        <%= image_tag 'uparrow.png', class: 'upvote', :data => {:answer_id =>  answer.id} %>
+        <span class="vote-number">1</span>
+        <%= image_tag 'downarrow.png', class: 'downvote', :data => {:answer_id =>  answer.id} %>
+      </div>
+
+
+      <div class="answer-text"><%= answer.body %>
+      <small>posted by <%= link_to answer.user.username, answer.user %> <%= answer.time_ago %> minutes ago</small></div>
+      
+  <% end %>
+</div>
+
 
