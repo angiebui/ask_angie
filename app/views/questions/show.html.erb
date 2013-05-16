@@ -2,7 +2,7 @@
 <hr>
 
 <%= @question.body %>
-<br><small><%= @question.user.username if @question.user %></small>
+<br><small><%= link_to @question.user.username, @question.user %></small>
 
 <hr>
 <h4>Answers</h4>
@@ -12,7 +12,7 @@
         <%= image_tag 'uparrow.png', class: 'upvote', :data => {:answer_id =>  answer.id} %><br>
         <%= image_tag 'downarrow.png', class: 'downvote', :data => {:answer_id =>  answer.id} %>
         <%= answer.body %>
-        <small><%= answer.user.username %></small>
+        <small><%= link_to answer.user.username, answer.user %></small>
       </p>
   <% end %>
 <% end %>
