@@ -4,17 +4,18 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    if user_signed_in?
+    if current_user
       @question = current_user.questions.new(params[:question])
       @answer = Answer.new
-        if @question.save
-          redirect_to @question
-        else
-          flash[:notice] = "Not a valid question. Please try again."
-          render 'new'
-        end
+
+      if @question.save
+        redirect_to @question
+      else
+        flash[:notice] = "Not a valid question. Please try again."
+        render 'new'
+      end
     else
-      flash[:notice] = "You must be logged in to create a question"
+      flash[:notice] = "You must be logged in to create a question."
       redirect_to login_users_path
     end
   end
@@ -27,6 +28,6 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.all
   end
-
+  
 end
 

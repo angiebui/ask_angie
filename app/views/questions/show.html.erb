@@ -1,6 +1,7 @@
 <h3>Question: <%= @question.title %> </h3>
 <hr>
 
+
 <%= @question.body %>
 <br><small><%= link_to @question.user.username, @question.user %></small>
 
@@ -23,7 +24,8 @@
 <%= form_for [@answer] do |f| %>
   <%= f.hidden_field :question_id, :value => @question.id %>
   <%= f.text_field :body, placeholder: "What are your thoughts?" %>
-  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :user_id, :value => current_user.id if current_user %>
   <%= f.submit "Add answer" %>
 <% end %>
+<p><%= flash[:notice] if flash[:notice] %></p>
 
