@@ -1,10 +1,8 @@
-<h3>Question: <%= @question.title %> </h3>
-<hr>
+<h4>Question:</h4> <h2 class="question-title"><%= @question.title %> </h2>
 
 
 <%= @question.body %>
 <br><small><%= link_to @question.user.username, @question.user %></small>
-
 <hr>
 <div class="answer-container">
   <%= form_for [@answer] do |f| %>
