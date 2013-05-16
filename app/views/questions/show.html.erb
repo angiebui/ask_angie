@@ -6,7 +6,12 @@
 <br><small><%= link_to @question.user.username, @question.user %></small>
 
 <hr>
-
+<%= form_for [@answer] do |f| %>
+  <%= f.hidden_field :question_id, :value => @question.id %>
+  <%= f.text_field :body, placeholder: "What are your thoughts?" %> 
+  <%= f.submit "Add answer" %>
+<% end %>
+<p><%= flash[:notice] if flash[:notice] %></p>
 <div class="answers">
   <h4>Answers</h4>
   <% @question.answers.each do |answer| %>
@@ -19,10 +24,4 @@
   <% end %>
 </div>
 
-<%= form_for [@answer] do |f| %>
-  <%= f.hidden_field :question_id, :value => @question.id %>
-  <%= f.text_field :body, placeholder: "What are your thoughts?" %> 
-  <%= f.submit "Add answer" %>
-<% end %>
-<p><%= flash[:notice] if flash[:notice] %></p>
 
