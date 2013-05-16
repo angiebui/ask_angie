@@ -4,6 +4,4 @@ FactoryGirl.define do
     body "Question Body"
     sequence(:user_id) { |n| n }
   end
-
-
 end
