@@ -6,6 +6,8 @@ class QuestionsController < ApplicationController
   def create
     if current_user
       @question = current_user.questions.new(params[:question])
+      @question.save
+      
       @answer = Answer.new
 
       if @question.save

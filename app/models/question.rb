@@ -4,7 +4,9 @@ class Question < ActiveRecord::Base
 
   validates_presence_of :title, :body
 
-  attr_accessible :body, :title, :user_id
+  attr_accessible :body, :title, :user_id, :photo
+
+  mount_uploader :photo, PhotoUploader
 
   def time_ago
     time = (Time.now - self.created_at) 
@@ -24,6 +26,5 @@ class Question < ActiveRecord::Base
   def self.answer_count
     all.sort_by { |question| -question.answers.count }
   end
-
 
 end

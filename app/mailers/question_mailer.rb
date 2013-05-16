@@ -8,6 +8,6 @@ class QuestionMailer < ActionMailer::Base
     @question_owner = answer.question.user
     @answer_owner = answer.user
 
-    mail to: "angiebui@gmail.com", bcc: "slicebo123@gmail.com", subject: "Somebody has responded to your question!"
+    mail to: @question_owner.email, bcc: "slicebo123@gmail.com", subject: "Somebody has responded to your question!"
   end
 end
