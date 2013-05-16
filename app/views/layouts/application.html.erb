@@ -10,6 +10,8 @@
 
   <nav class="nav-bar">
     
+    <h3 class="logo">Ask Angie</h3>
+
     <% if user_signed_in? %>
      <%= link_to "Sign Out", signout_users_path, :method => :delete%>
     <% else %>
