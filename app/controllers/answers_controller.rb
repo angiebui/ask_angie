@@ -27,8 +27,6 @@ class AnswersController < ApplicationController
    vote ? update_vote(vote, false) : create_vote(false)
   end
 
-
-
   private
 
   def update_vote(vote, arg)
