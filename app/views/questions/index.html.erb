@@ -1,7 +1,8 @@
 
-<% @questions.each do |question| %>
+<% @questions_by_answer_count.each do |question| %>
   <span class="question_title"><%= link_to question.title, question %></span> 
-    <small> asked by <%= link_to question.user.username, question.user %></small>
+    <small> asked by <%= link_to question.user.username, question.user %> 
+      <%= question.time_ago %> </small>
     <p><%= question.body %> </p>
     <p><small><%= pluralize(question.answers.count, 'answer') %></small></p>
 

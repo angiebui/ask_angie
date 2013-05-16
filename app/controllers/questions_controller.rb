@@ -26,7 +26,7 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    @questions = Question.all
+    @questions_by_answer_count = Question.answer_count
   end
   
 end
