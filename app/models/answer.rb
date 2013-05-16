@@ -9,7 +9,9 @@ class Answer < ActiveRecord::Base
 
   def time_ago 
     ((Time.now - self.created_at) / 1.hour).round
-    
+  end
+
+  def vote_count
   end
 
 end
