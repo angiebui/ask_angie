@@ -5,17 +5,20 @@
 <br><small><%= link_to @question.user.username, @question.user %></small>
 
 <hr>
-<h4>Answers</h4>
-<% if @question.answers.any? %>
-  <% @question.answers.each do |answer| %>
-      <p>
-        <%= image_tag 'uparrow.png', class: 'upvote', :data => {:answer_id =>  answer.id} %><br>
-        <%= image_tag 'downarrow.png', class: 'downvote', :data => {:answer_id =>  answer.id} %>
-        <%= answer.body %>
-        <small><%= link_to answer.user.username, answer.user %></small>
-      </p>
+
+<div class="answers">
+  <h4>Answers</h4>
+  <% if @question.answers.any? %>
+    <% @question.answers.each do |answer| %>
+        <p>
+          <%= image_tag 'uparrow.png', class: 'upvote', :data => {:answer_id =>  answer.id} %><br>
+          <%= image_tag 'downarrow.png', class: 'downvote', :data => {:answer_id =>  answer.id} %>
+          <%= answer.body %>
+          <small><%= answer.user.username %></small>
+        </p>
+    <% end %>
   <% end %>
-<% end %>
+</div>
 
 <%= form_for [@answer] do |f| %>
   <%= f.hidden_field :question_id, :value => @question.id %>
