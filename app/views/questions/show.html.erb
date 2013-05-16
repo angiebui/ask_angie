@@ -17,7 +17,7 @@
 
 <%= form_for [@question, @answer] do |f| %>
   <%= f.text_field :body, placeholder: "What are your thoughts?" %>
-  <%= f.hidden_field :user_id, :value => 1 %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.submit "Add answer" %>
 <% end %>
 
