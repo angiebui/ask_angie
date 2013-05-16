@@ -1,31 +1,39 @@
+body {
+  font-family: 'Average Sans', sans-serif;
+}
+
 .container {
-  margin-left: 36px;
-  margin-right: 36px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
 }
 
 .nav-bar {
   margin-bottom: 20px;
   background-color: whitesmoke;
   height: 42px;
-  margin-top: -8px;
+  margin-top: -20px;
   margin-left: -8px;
   margin-right: -8px;
 }
 
 .nav-bar a {
   float: right;
-  padding: 10px;
+  padding-right: 10px;
   text-decoration: none;
   color: #E83535;
+  line-height: 42px;
 }
 
 .nav-bar a:hover {
   color: black;
 }
 
-.logo {
+.logo a {
   float: left;
   color: #E83535;
   padding-left: 20px;
+  line-height: 42px;
+  font-family: 'Goudy Bookletter 1911', serif;
 }
 
