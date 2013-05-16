@@ -8,10 +8,12 @@
 <h4>Answers</h4>
 <% if @question.answers.any? %>
   <% @question.answers.each do |answer| %>
-      <p><%= image_tag 'uparrow.png', class: 'upvote' %><br>
-      <%= image_tag 'downarrow.png', class: 'downvote' %>
-      <%= answer.body %>
-      <small><%= answer.user.username %></small></p>
+      <p>
+        <%= image_tag 'uparrow.png', class: 'upvote', :data => {:answer_id =>  answer.id} %><br>
+        <%= image_tag 'downarrow.png', class: 'downvote', :data => {:answer_id =>  answer.id} %>
+        <%= answer.body %>
+        <small><%= answer.user.username %></small>
+      </p>
   <% end %>
 <% end %>
 

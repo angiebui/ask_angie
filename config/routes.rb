@@ -10,7 +10,11 @@ DbcOverflow::Application.routes.draw do
     end
   end
 
-  resources :answers
+  resources :answers do
+    member do
+      post 'upvote'
+    end
+  end
 
   root :to => 'home#index'
 end
