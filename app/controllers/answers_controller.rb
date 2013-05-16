@@ -8,7 +8,7 @@ class AnswersController < ApplicationController
 
   def create
     if current_user
-      @answer = Answer.new(params[:answer])
+      @answer = current_user.answers.new(params[:answer])
       flash[:notice] = "Invalid answer. Please try again." unless @answer.save 
       redirect_to @answer.question
     else
@@ -19,29 +19,20 @@ class AnswersController < ApplicationController
 
   def upvote
     vote = Vote.find_by_user_id_and_answer_id(current_user.id, @answer.id)
-    # refactor this to look for the primary "composite key"
-    if vote
-      update_vote(vote, true)
-    else
-      create_vote(true)
-    end
+    vote ? update_vote(vote, true) : create_vote(true)
   end
 
   def downvote
    vote = Vote.find_by_user_id_and_answer_id(current_user.id, @answer.id)
-    if vote
-      update_vote(vote, false)
-    else
-      create_vote(false)
-    end
+   vote ? update_vote(vote, false) : create_vote(false)
   end
 
   private
+
   def update_vote(vote, arg)
    vote.upvote = arg
    vote.save
-   flash[:notice] = "Your vote has been updated!"
-   # notice is currently not showing up
+   render :nothing => true
   end
 
   def create_vote(arg)
@@ -50,7 +41,6 @@ class AnswersController < ApplicationController
     @vote.answer_id = @answer.id
     @vote.upvote = arg
     @vote.save!
-    render :nothing => true
-    flash[:notice] = "Your vote has been created!"
+    render :nothing => true    
   end
 end
