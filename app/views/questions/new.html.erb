@@ -1,6 +1,6 @@
 <h2> Ask Question </h2>
 <div class="question-form">
-  <span class="errors"><%= flash[:error] if flash[:error] %></span>
+  <span class="notice"><%= flash[:notice] if flash[:notice] %></span>
   <%= form_for @question  do |f| %>
     <p><%= f.label "Title" %></p>
     <p><%= f.text_field :title %></p>

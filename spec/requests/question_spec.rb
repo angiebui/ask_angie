@@ -50,7 +50,7 @@ describe 'Question', :js => true do
           click_button 'ask question'
           }.to_not change(Question, :count)
 
-       page.should have_content ("Not a valid question. Please try again") ##currently will fail because user is not logged in, will give different error
+       page.should have_content ("Not a valid question. Please try again.") ##currently will fail because user is not logged in, will give different error
      end
    end
  

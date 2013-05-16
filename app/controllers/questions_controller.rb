@@ -1,5 +1,4 @@
 class QuestionsController < ApplicationController
-
   def new
     @question = Question.new
   end
@@ -11,7 +10,7 @@ class QuestionsController < ApplicationController
         if @question.save
           redirect_to @question
         else
-          flash[:error] = "Not a valid question. Please try again"
+          flash[:notice] = "Not a valid question. Please try again."
           render 'new'
         end
     else

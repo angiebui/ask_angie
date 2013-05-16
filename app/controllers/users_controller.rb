@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def new
     @user = User.new
   end
@@ -24,18 +23,15 @@ class UsersController < ApplicationController
       user = User.find_by_username(params[:user]["username"])
       if user && user.authenticate(params[:user]["password"])
         session[:id] = user.id
-        redirect_to user_path(user.id), :notice => "Hello, #{user.username}"
+        redirect_to user, :notice => "Hello, #{user.username}"
       else
         redirect_to login_users_path, :notice => "Invalid email or password"
       end
     else
-      
     end
-
   end
 
   def show    
-
   end
 
 
