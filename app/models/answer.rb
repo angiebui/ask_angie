@@ -8,6 +8,8 @@ class Answer < ActiveRecord::Base
 
   attr_accessible :body, :question_id, :user_id
 
+  mount_uploader :photo, PhotoUploader
+
   def answer_notification_email
     QuestionMailer.answer_notification(self).deliver
   end
