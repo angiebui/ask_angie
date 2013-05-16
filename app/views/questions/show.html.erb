@@ -18,7 +18,7 @@
   <div class="answers">
     <h4>Answers</h4>
     
-    <% @question.answers.each do |answer| %>
+    <% @question.answers.sorted_by_vote.each do |answer| %>
       <div class="answer">
           <div class="votes">
             <%= image_tag 'uparrow.png', class: 'upvote', :data => {:answer_id =>  answer.id} %>
