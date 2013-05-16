@@ -14,4 +14,4 @@
 /log/*.log
 /tmp
 
-config/environments/$RAILS_ENV.rb
+config/environments/email_keys.yml

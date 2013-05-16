@@ -1,4 +1,11 @@
 DbcOverflow::Application.configure do
+
+  EMAIL_CONFIG = YAML.load_file("#{::Rails.root}/config/environments/email_keys.yml")
+
+  ENV['GMAIL_USERNAME'] = EMAIL_CONFIG['GMAIL_USERNAME']
+  ENV['GMAIL_PASSWORD'] = EMAIL_CONFIG['GMAIL_PASSWORD']
+
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
@@ -34,4 +41,21 @@ DbcOverflow::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => 'gmail.com',
+    :user_name            => ENV['GMAIL_USERNAME'],
+    :password             => ENV['GMAIL_PASSWORD'],
+    :authentication       => 'plain',
+    :enable_starttls_auto => true  }
+
+  config.action_mailer.perform_deliveries = true
+
+   # Specify what domain to use for mailer URLs
+  config.action_mailer.default_url_options = {host: "localhost:3000"}
+
 end
