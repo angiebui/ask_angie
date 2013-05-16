@@ -15,7 +15,8 @@
   <% end %>
 <% end %>
 
-<%= form_for [@question, @answer] do |f| %>
+<%= form_for [@answer] do |f| %>
+  <%= f.hidden_field :question_id, :value => @question.id %>
   <%= f.text_field :body, placeholder: "What are your thoughts?" %>
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.submit "Add answer" %>

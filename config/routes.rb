@@ -1,8 +1,6 @@
 DbcOverflow::Application.routes.draw do
 
-  resources :questions do
-    resources :answers
-  end
+  resources :questions
 
   resources :users do
     collection do 
@@ -12,9 +10,8 @@ DbcOverflow::Application.routes.draw do
     end
   end
 
-  # root :to => 'questions#index'
-  root :to => 'home#index'
+  resources :answers
 
-  
+  root :to => 'home#index'
 end
 

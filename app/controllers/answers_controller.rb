@@ -1,14 +1,8 @@
 class AnswersController < ApplicationController
-  before_filter :get_question
-
-  def get_question
-    @question = Question.find(params[:question_id])
-  end
-
   def create
-    @answer = @question.answers.new(params[:answer])
+    @answer = Answer.new(params[:answer])
     if @answer.save
-      redirect_to @question
+      redirect_to @answer.question
     else
       "Please add a body"
     end
