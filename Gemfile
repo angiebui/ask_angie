@@ -34,6 +34,8 @@ group :test, :development do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'selenium-webdriver'
+  gem 'carrierwave'
+  gem 'mini_magick'
 end
 
 
