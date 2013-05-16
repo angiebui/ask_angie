@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130515171714) do
+ActiveRecord::Schema.define(:version => 20130516052505) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -50,6 +50,6 @@ ActiveRecord::Schema.define(:version => 20130515171714) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "votes", ["answer_id", "user_id"], :name => "index_votes_on_answer_id_and_user_id"
+  add_index "votes", ["answer_id", "user_id"], :name => "vote_key", :unique => true
 
 end
