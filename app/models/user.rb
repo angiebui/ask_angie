@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :username, :email, :password, :gender
 
-  validates :username, :email, :password, :presence => true  
+  validates :username, :email, :password, :gender, :presence => true  
   validates :username, :email, :uniqueness => true
   validates :password, :length => { :minimum => 5}
 
