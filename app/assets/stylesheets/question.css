@@ -7,3 +7,8 @@
   color:red;
   margin: 0px;
 }
+
+.question_title {
+  font-weight: bold;
+  font-size: 16pt;
+}

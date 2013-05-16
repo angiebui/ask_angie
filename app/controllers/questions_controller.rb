@@ -5,20 +5,28 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(params[:question])
-    @answer = Answer.new
-
-    if @question.save
-      redirect_to @question
+    if user_signed_in?
+      @question = current_user.questions.new(params[:question])
+      @answer = Answer.new
+        if @question.save
+          redirect_to @question
+        else
+          flash[:error] = "Not a valid question. Please try again"
+          render 'new'
+        end
     else
-      flash[:error] = "Not a valid question. Please try again"
-      render 'new'
+      flash[:notice] = "You must be logged in to create a question"
+      redirect_to login_users_path
     end
   end
 
   def show
     @question = Question.find(params[:id])
     @answer = Answer.new
+  end
+
+  def index
+    @questions = Question.all
   end
 
 end
