@@ -15,12 +15,16 @@
 <div class="answers">
   <h4>Answers</h4>
   <% @question.answers.each do |answer| %>
-      <p>
-        <%= image_tag 'uparrow.png', class: 'upvote', :data => {:answer_id =>  answer.id} %><br>
+      <div class="votes">
+        <%= image_tag 'uparrow.png', class: 'upvote', :data => {:answer_id =>  answer.id} %>
+        <span class="vote-number">1</span>
         <%= image_tag 'downarrow.png', class: 'downvote', :data => {:answer_id =>  answer.id} %>
-        <%= answer.body %>
-        <small><%= answer.user.username %></small>
-      </p>
+      </div>
+
+
+      <div class="answer-text"><%= answer.body %>
+      <small>posted by <%= link_to answer.user.username, answer.user %> <%= answer.time_ago %> minutes ago</small></div>
+      
   <% end %>
 </div>
 
