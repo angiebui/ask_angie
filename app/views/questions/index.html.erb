@@ -1,0 +1,8 @@
+
+<% @questions.each do |question| %>
+  <span class="question_title"><%= question.title %></span> 
+    <small> asked by <%= question.user.username %></small>
+    <p><%= question.body %> </p>
+
+  <hr>
+<% end %>

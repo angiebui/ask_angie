@@ -33,6 +33,7 @@ group :test, :development do
   gem 'debugger'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
+  gem 'selenium-webdriver'
 end
 
 
