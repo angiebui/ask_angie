@@ -15,8 +15,19 @@ class Answer < ActiveRecord::Base
     QuestionMailer.answer_notification(self).deliver
   end
 
-  def time_ago 
-    ((Time.now - self.created_at) / 1.hour).round
+  def time_ago
+    time = (Time.now - self.created_at) 
+    if time > 86400
+      "#{time.to_i/86400} days ago"
+    elsif time > 7200
+      "#{time.to_i/3600} hours ago"
+    elsif time > 3600
+      "#{time.to_i/3600} hour ago"
+    elsif time > 60
+      "#{time.to_i/60} minutes ago"
+    else 
+      "just now"
+    end
   end
 
   def self.sorted_by_vote
