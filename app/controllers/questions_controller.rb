@@ -1,13 +1,17 @@
 class QuestionsController < ApplicationController
   def new
     @question = Question.new
+    @topics = Topic.all
   end
 
   def create
-    if current_user
-      @question = current_user.questions.new(params[:question])
-      @question.save
-      
+
+   if current_user
+      @topic = Topic.find(params[:topic_id])
+
+      @question = current_user.questions.build(params[:question])
+      @question.topic_id = @topic.id
+
       @answer = Answer.new
 
       if @question.save
@@ -25,10 +29,12 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @answer = Answer.new
+    @topics = Topic.all
   end
 
   def index
     @questions_by_answer_count = Question.answer_count
+    @topics = Topic.all
   end
   
 end
