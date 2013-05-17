@@ -3,6 +3,7 @@ class Question < ActiveRecord::Base
   belongs_to :topic
   has_many :answers
   has_and_belongs_to_many :tags
+  has_many :votes, :as => :voteable
 
   validates_presence_of :title, :body
 
@@ -36,6 +37,12 @@ class Question < ActiveRecord::Base
   def tag_list=(new_tags)
     tag_names = new_tags.split(/,\s+/)
     self.tags = tag_names.map { |name| Tag.find_or_create_by_name(name)}
+  end
+
+  def vote_count
+    upvote = Vote.where("voteable_type = ? AND voteable_id = ? AND upvote = ?", 'Question', self.id, true).count
+    downvote = Vote.where("voteable_type = ? AND voteable_id = ? AND upvote = ?",'Question', self.id, false).count
+    upvote - downvote 
   end
 
 end

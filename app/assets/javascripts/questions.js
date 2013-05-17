@@ -13,7 +13,8 @@ $(document).ready(function() {
     $('.answers').on('click', 'img', function(e){
       e.preventDefault();
       var self = this;
-      var id = $(self).data("answer-id");
+      var id = $(self).data("voteable-id");
+      console.log(id);
       var buttonType = $(self).attr('class');
       var image_type = $(self).data("image")
       var opposite_image_type = $(self).siblings('img').data('image')
