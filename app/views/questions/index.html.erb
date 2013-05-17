@@ -1,25 +1,27 @@
 <% @questions_by_answer_count.each do |question| %>
-  <span class="question_title">
-    <%= link_to question.title, question %>
-  </span> 
-  
-  <small> asked by 
-      <%= link_to question.user.username, question.user %> 
-      <%= question.time_ago %> 
-      <% if question.topic %>
-      <%= link_to question.topic.title, "/topics/#{question.topic.title}" %> 
-      <% end %>
+
+<span class="question_title">
+  <%= link_to question.title, question %>
+</span> 
+
+<small> asked by 
+  <%= link_to question.user.username, question.user %> 
+  <%= question.time_ago %>   
+  <%= link_to question.topic.title, "/topics/#{question.topic.title}" %> 
+</small>
+
+<p>
+  <%= question.body %> 
+</p>
+
+<p>
+  <small>
+    <%= pluralize(question.answers.count, 'answer') %> | 
+    <% question.tags.map do |tag|  %>
+    <%= link_to "#" + tag.name, "/tags/#{tag.name}" %> 
+    <% end %>
   </small>
+</p>
 
-  <p>
-    <%= question.body %> 
-  </p>
-
-  <p>
-    <small>
-      <%= pluralize(question.answers.count, 'answer') %>
-    </small>
-  </p>
-
-  <hr>
+<hr>
 <% end %>

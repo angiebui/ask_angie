@@ -1,14 +1,14 @@
 class Question < ActiveRecord::Base
   belongs_to :user
   belongs_to :topic
-  has_many :answers 
+  has_many :answers
+  has_and_belongs_to_many :tags
 
   validates_presence_of :title, :body
 
   mount_uploader :photo, PhotoUploader
 
-  attr_accessible :body, :title, :user_id, :topic_id, :photo
-
+  attr_accessible :body, :title, :user_id, :topic_id, :photo, :tag_list
 
   def time_ago
     time = (Time.now - self.created_at) 
@@ -27,6 +27,15 @@ class Question < ActiveRecord::Base
 
   def self.answer_count
     all.sort_by { |question| -question.answers.count }
+  end
+
+  def tag_list
+    self.tags.map { |t| t.name }.join(", ")
+  end
+
+  def tag_list=(new_tags)
+    tag_names = new_tags.split(/,\s+/)
+    self.tags = tag_names.map { |name| Tag.find_or_create_by_name(name)}
   end
 
 end
