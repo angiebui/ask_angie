@@ -1,36 +1,28 @@
 <% @questions_by_answer_count.each do |question| %>
-
-  <div class='question-home'><span class="question_title"><%= link_to question.title, question %></span> 
-    <small> asked by <%= link_to question.user.username.capitalize, question.user %> 
-      <%= question.time_ago %> </small>
-    <p><%= question.body %> </p>
+  <div class='question-home'>
+    <span class="question_title">
+      <%= link_to question.title, question %>
+    </span> 
+    <small> asked by 
+      <%= link_to question.user.username.capitalize, question.user %> 
+      <%= question.time_ago %> 
+    </small>
+    <p>
+      <%= question.body %> 
+    </p>
     <%= image_tag question.photo.thumb.url.slice(1..-1), class: "home-thumb" if question.photo_url %>
-    <p><small><%= pluralize(question.answers.count, 'answer') %></small></p>
+    <p>
+      <small>
+        <%= pluralize(question.answers.count, 'answer') %>
+      </small>
+    </p>
+    <p>
+      <small>
+        <% question.tags.map do |tag|  %>
+          <%= link_to "#" + tag.name, "/tags/#{tag.name}" %> 
+        <% end %>
+      </small>
+    </p>
   <hr>
-</div>
-
-<span class="question_title">
-  <%= link_to question.title, question %>
-</span> 
-
-<small> asked by 
-  <%= link_to question.user.username, question.user %> 
-  <%= question.time_ago %>   
-  <%= link_to question.topic.title, "/topics/#{question.topic.title}" %> 
-</small>
-
-<p>
-  <%= question.body %> 
-</p>
-
-<p>
-  <small>
-    <%= pluralize(question.answers.count, 'answer') %> | 
-    <% question.tags.map do |tag|  %>
-    <%= link_to "#" + tag.name, "/tags/#{tag.name}" %> 
-    <% end %>
-  </small>
-</p>
-
-<hr>
+  </div>
 <% end %>
