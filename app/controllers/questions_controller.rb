@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
         redirect_to @question
       else
         flash[:notice] = "Not a valid question. Please try again."
-        render 'new'
+        redirect_to new_question_path
       end
     else
       flash[:notice] = "You must be logged in to create a question."
