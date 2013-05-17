@@ -1,5 +1,5 @@
 DbcOverflow::Application.routes.draw do
-  root to: 'questions#index'
+  
   
   resources :questions
 
@@ -24,7 +24,6 @@ DbcOverflow::Application.routes.draw do
   get 'tags/:name' => 'tags#show'
   get '/tags' => 'tags#index'
 
-  root :to => 'home#index'
-
+  root to: 'questions#index'
 end
 

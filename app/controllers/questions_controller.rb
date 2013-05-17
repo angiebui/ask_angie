@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @answer = Answer.new
-    @topics = Topic.all
+    @topics = Topic.topic_sort
   end
 
   def index

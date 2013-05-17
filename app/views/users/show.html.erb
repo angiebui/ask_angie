@@ -3,7 +3,15 @@
 <span class="user-answers">
 <h3>Questions</h3>
 <hr>
-
+	<% @questions.each do |question| %>
+  <p>
+    <%= link_to question.body, question %><br>
+    <small>
+      <%= pluralize(question.answers.count, 'answer') %> | 
+      posted <%= question.time_ago %>
+    </small>
+  </p>
+	<% end %>
 </span>
 
 
