@@ -15,3 +15,5 @@
 /tmp
 
 config/environments/email_keys.yml
+
+/app/images/uploads/*
