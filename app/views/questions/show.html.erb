@@ -12,12 +12,11 @@
 <br>
 
 <small>
-  <%= link_to @question.user.username, @question.user %>
+  Asked by <%= link_to @question.user.username, @question.user %> <%= @question.time_ago %>
 </small>
 
 
 <hr>
-
 
 <div class="answer-container">
   <%= form_for [@answer] do |f| %>
@@ -29,7 +28,7 @@
 
   <div class="answers">
     <h4>Answers</h4>
-    <hr>
+
     <% @question.answers.sorted_by_vote.each do |answer| %>
     <div class="answer">
       <div class="votes">
@@ -40,7 +39,7 @@
       <div class="answer-text"><%= answer.body %><br>
         <small class="byline">posted by 
           <%= link_to answer.user.username, answer.user %> 
-          <%= answer.time_ago %> minutes ago
+          <%= answer.time_ago %> 
         </small>
       </div>
     </div>
