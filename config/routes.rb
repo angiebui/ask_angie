@@ -18,6 +18,12 @@ DbcOverflow::Application.routes.draw do
     end
   end
 
+  get '/topics/:title' => 'topics#show'
+  get '/topics' => 'topics#index'
+  
+
   root :to => 'home#index'
+
+
 end
 

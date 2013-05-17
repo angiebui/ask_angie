@@ -1,19 +1,23 @@
-<h4>Question:</h4> 
-<h2 class="question-title"> 
-  <%= @question.title %> 
+<h2 class = "question-title">
+  <%= @question.body.capitalize %>
 </h2>
 
-<p><%= @question.body %></p>
+<p class="question-title"> 
+  <%= @question.title.capitalize %> 
+</p>
 
+
+<small>
+  <%= link_to @question.topic.title.downcase, "/topics/#{@question.topic.title}" %> | Asked by <%= link_to @question.user.username, @question.user %> <%= @question.time_ago %>
+</small>
+<hr>
 <p>
   <%= image_tag @question.photo_url.slice(1..-1) if @question.photo_url %>
 </p>
 
 <br>
 
-<small>
-  Asked by <%= link_to @question.user.username, @question.user %> <%= @question.time_ago %>
-</small>
+
 
 
 <hr>
