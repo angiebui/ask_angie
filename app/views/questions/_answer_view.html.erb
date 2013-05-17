@@ -1,0 +1,19 @@
+<div class="answers">
+  <h4>Answers</h4>
+
+  <% @question.answers.sorted_by_vote.each do |answer| %>
+  <div class="answer">
+    <div class="votes">
+      <%= image_tag 'uparrow.png', class: 'upvote', :data => {:answer_id =>  answer.id, :image => "uparrow.png"} %>
+      <span class="vote-number"> <%= answer.vote_count %></span>
+      <%= image_tag 'downarrow.png', class: 'downvote', :data => {:answer_id =>  answer.id, :image => "downarrow.png"} %>
+    </div>
+    <div class="answer-text"><%= answer.body %><br>
+      <small class="byline">posted by 
+        <%= link_to answer.user.username, answer.user %> 
+        <%= answer.time_ago %> 
+      </small>
+    </div>
+  </div>
+  <% end %>
+</div>

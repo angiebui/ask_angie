@@ -21,7 +21,6 @@ $(document).ready(function() {
       $.post(url, function(data) {
         $(self).siblings('.vote-number').html(data.answer_score);
         $(self).attr('src', "/assets/selected_" + image_type);
-        alert(data.answer_score);
       });
 
     });

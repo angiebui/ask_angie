@@ -9,7 +9,6 @@ describe 'Question', :js => true do
     it "should show questions" do
       question.save
       visit root_path
-      debugger
       page.should have_content question.title
       page.should have_content question.body
       page.should have_content question.user.username
