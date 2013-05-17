@@ -16,11 +16,17 @@ $(document).ready(function() {
       var id = $(self).data("answer-id");
       var buttonType = $(self).attr('class');
       var image_type = $(self).data("image")
+      var opposite_image_type = $(self).siblings('img').data('image')
       url = "/answers/{id}/{buttonType}".format({'id': id, 'buttonType' : buttonType });
 
       $.post(url, function(data) {
         $(self).siblings('.vote-number').html(data.answer_score);
-        $(self).attr('src', "/assets/selected_" + image_type);
+        if (data.action_type === "create_vote")
+          {$(self).attr('src', "/assets/selected_" + image_type);
+          };
+        if (data.action_type === "update_vote")
+          { $(self).attr('src', "/assets/selected_" + image_type);
+            $(self).siblings('img').attr("src", "/assets/" + opposite_image_type)}
       });
 
     });

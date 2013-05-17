@@ -18,11 +18,11 @@ class AnswersController < ApplicationController
     if vote = @answer.votes.find_by_user_id(current_user.id)
       update_vote(vote, true)
       score = @answer.vote_count
-      return render :json => {answer_score: score}
+      return render :json => {answer_score: score, action_type: "update_vote"}
     else
       create_vote(true) 
       score = @answer.vote_count
-      return render :json => {answer_score: score}
+      return render :json => {answer_score: score, action_type: "create_vote"}
     end
   end
 
@@ -30,11 +30,11 @@ class AnswersController < ApplicationController
     if vote = @answer.votes.find_by_user_id(current_user.id)
       update_vote(vote, false)
       score = @answer.vote_count
-      return render :json => {answer_score: score}
+      return render :json => {answer_score: score, action_type: "update_vote"}
     else
       create_vote(false) 
       score = @answer.vote_count
-      return render :json => {answer_score: score}
+      return render :json => {answer_score: score, action_type: "create_vote"}
     end
   end
 
