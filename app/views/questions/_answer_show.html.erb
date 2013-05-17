@@ -4,9 +4,20 @@
   <% @question.answers.sorted_by_vote.each do |answer| %>
   <div class="answer">
     <div class="votes">
-      <%= image_tag 'uparrow.png', class: 'upvote', :data => {:voteable_id =>  answer.id, :image => "uparrow.png"} %>
-      <span class="vote-number"> <%= answer.vote_count %></span>
-      <%= image_tag 'downarrow.png', class: 'downvote', :data => {:voteable_id =>  answer.id, :image => "downarrow.png"} %>
+      <% if current_user.voted?(answer) %>
+        <% image_names = current_user.upvoted?(answer) ? ['selected_uparrow', 'downarrow'] : ['uparrow', 'selected_downarrow'] %>
+        <div class="vote">
+          <% image_names.each do |name| %>
+            <% class_name = name.split('_').last == 'uparrow' ? 'upvote' : 'downvote'%>
+            <%= image_tag "#{name}.png", class: class_name, :data => {:voteable_id =>  answer.id, :image => "#{name}.png"} %>
+            <% if image_names.first == name %>
+              <span class="vote-number"> <%= answer.vote_count %></span>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
+        <%= render partial: 'default_vote_buttons', locals: {answer: answer} %>
+      <% end %>
     </div>
     <div class="answer-text"><%= answer.body %><br>
       <small class="byline">posted by 

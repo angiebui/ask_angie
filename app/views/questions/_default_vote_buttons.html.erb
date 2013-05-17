@@ -1,0 +1,4 @@
+<%= image_tag 'uparrow.png', class: 'upvote', :data => {:voteable_id =>  answer.id, :image => "uparrow.png"} %>
+<span class="vote-number"> <%= answer.vote_count %></span>
+<%= image_tag 'downarrow.png', class: 'downvote', :data => {:voteable_id =>  answer.id, :image => "downarrow.png"} %>
+

@@ -15,18 +15,20 @@ $(document).ready(function() {
       var self = this;
       var id = $(self).data("voteable-id");
       var buttonType = $(self).attr('class');
-      var image_type = $(self).data("image")
-      var opposite_image_type = $(self).siblings('img').data('image')
+      var imageType = $(self).data("image")
+      var oppositeImageType = $(self).siblings('img').data('image')
       url = "/answers/{id}/{buttonType}".format({'id': id, 'buttonType' : buttonType });
 
       $.post(url, function(data) {
         $(self).siblings('.vote-number').html(data.answer_score);
-        if (data.action_type === "create_vote")
-          {$(self).attr('src', "/assets/selected_" + image_type);
-          };
-        if (data.action_type === "update_vote")
-          { $(self).attr('src', "/assets/selected_" + image_type);
-            $(self).siblings('img').attr("src", "/assets/" + opposite_image_type)}
+        var oppositeImage = $(self).siblings('img');
+        oppositeImage.attr('src', oppositeImage.attr('src').replace('selected_', '')) 
+        var imageSource = $(self).attr('src').split('/')
+        if ($(self).attr('src').indexOf("selected") === -1)
+        {imageSource.shift();
+         imageSource[1] = 'selected_'+imageSource[1]
+         $(self).attr('src', '/'+imageSource.join('/'))};
+      
       });
 
     });
