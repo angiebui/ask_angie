@@ -1,0 +1,30 @@
+.user-answers {
+  text-align: center;
+  float:left;
+  width:48%;
+  margin-left: auto;
+
+}
+
+.user-questions {
+  text-align: center;
+  float:right;
+  width:48%;
+  margin-right: auto;
+
+}
+
+.username {
+  text-align: center;
+}
+
+
+.user-questions p {
+  text-align: left;
+  padding-left: 1em;
+}
+
+.user-answers p {
+  text-align: left;
+  padding-left: 1em;
+}
