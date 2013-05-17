@@ -8,10 +8,8 @@ class QuestionsController < ApplicationController
 
    if current_user
       @topic = Topic.find(params[:topic_id])
-
       @question = current_user.questions.build(params[:question])
       @question.topic_id = @topic.id
-
       @answer = Answer.new
 
       if @question.save
