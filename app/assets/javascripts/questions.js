@@ -12,13 +12,18 @@ $(document).ready(function() {
 
     $('.answers').on('click', 'img', function(e){
       e.preventDefault();
-      var id = $(this).data("answer-id");
-      var buttonType = $(this).attr('class');
-      $.post("/answers/{id}/{buttonType}".format({'id': id, 'buttonType' : buttonType }));
+      var self = this;
+      var id = $(self).data("answer-id");
+      var buttonType = $(self).attr('class');
+      var image_type = $(self).data("image")
+      url = "/answers/{id}/{buttonType}".format({'id': id, 'buttonType' : buttonType });
 
+      $.post(url, function(data) {
+        $(self).siblings('.vote-number').html(data.answer_score);
+        $(self).attr('src', "/assets/selected_" + image_type);
+        alert(data.answer_score);
+      });
 
     });
-
-  
 
 });

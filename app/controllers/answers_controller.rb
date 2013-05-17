@@ -2,9 +2,6 @@ class AnswersController < ApplicationController
 
   before_filter :get_answer_id, only: [:upvote, :downvote, :create_vote]
 
-  def get_answer_id
-    @answer = Answer.find(params[:id])
-  end
 
   def create
     if current_user
@@ -18,13 +15,27 @@ class AnswersController < ApplicationController
   end
 
   def upvote
-    vote = Vote.find_by_user_id_and_answer_id(current_user.id, @answer.id)
-    vote ? update_vote(vote, true) : create_vote(true)
+    if vote = @answer.votes.find_by_user_id(current_user.id)
+      update_vote(vote, true)
+      score = @answer.vote_count
+      return render :json => {answer_score: score}
+    else
+      create_vote(true) 
+      score = @answer.vote_count
+      return render :json => {answer_score: score}
+    end
   end
 
   def downvote
-   vote = Vote.find_by_user_id_and_answer_id(current_user.id, @answer.id)
-   vote ? update_vote(vote, false) : create_vote(false)
+    if vote = @answer.votes.find_by_user_id(current_user.id)
+      update_vote(vote, false)
+      score = @answer.vote_count
+      return render :json => {answer_score: score}
+    else
+      create_vote(false) 
+      score = @answer.vote_count
+      return render :json => {answer_score: score}
+    end
   end
 
   private
@@ -32,7 +43,6 @@ class AnswersController < ApplicationController
   def update_vote(vote, arg)
    vote.upvote = arg
    vote.save
-   render :nothing => true
   end
 
   def create_vote(arg)
@@ -41,8 +51,9 @@ class AnswersController < ApplicationController
     @vote.answer_id = @answer.id
     @vote.upvote = arg
     @vote.save!
-    render :nothing => true    
   end
 
-
+  def get_answer_id
+    @answer = Answer.find(params[:id])
+  end
 end

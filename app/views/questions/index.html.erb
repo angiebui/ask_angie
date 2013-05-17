@@ -1,10 +1,11 @@
 
 <% @questions_by_answer_count.each do |question| %>
-  <span class="question_title"><%= link_to question.title, question %></span> 
+  <div class='question-home'><span class="question_title"><%= link_to question.title, question %></span> 
     <small> asked by <%= link_to question.user.username, question.user %> 
       <%= question.time_ago %> </small>
     <p><%= question.body %> </p>
+    <%= image_tag question.photo.thumb.url.slice(1..-1), class: "home-thumb" if question.photo_url %>
     <p><small><%= pluralize(question.answers.count, 'answer') %></small></p>
-
   <hr>
+</div>
 <% end %>
