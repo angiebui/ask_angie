@@ -1,12 +1,14 @@
 class Question < ActiveRecord::Base
   belongs_to :user
+  belongs_to :topic
   has_many :answers 
 
   validates_presence_of :title, :body
 
-  attr_accessible :body, :title, :user_id, :photo
-
   mount_uploader :photo, PhotoUploader
+
+  attr_accessible :body, :title, :user_id, :topic_id, :photo
+
 
   def time_ago
     time = (Time.now - self.created_at) 
