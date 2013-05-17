@@ -7,8 +7,11 @@ describe 'Question', :js => true do
 
   describe "#index" do
     it "should show questions" do
+      question.save
       visit root_path
-
+      page.should have_content question.title
+      page.should have_content question.body
+      page.should have_content question.user.username
     end
   end
 
@@ -35,8 +38,6 @@ describe 'Question', :js => true do
 
           page.should have_content("Valid Question - Title")
           page.should have_content("Valid Question - Body")
-
-        # as a user, submitting valid question input, we should enter Q into db, and see it 
       end
     end
 
@@ -50,7 +51,7 @@ describe 'Question', :js => true do
           click_button 'ask question'
           }.to_not change(Question, :count)
 
-       page.should have_content ("Not a valid question. Please try again.") ##currently will fail because user is not logged in, will give different error
+       page.should have_content ("Not a valid question. Please try again.")
      end
    end
  
