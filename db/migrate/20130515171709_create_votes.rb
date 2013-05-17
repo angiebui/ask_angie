@@ -7,6 +7,6 @@ class CreateVotes < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :votes, [:voteable_id, :user_id], :unique => true, :name => 'vote_key'
+    add_index :votes, [:voteable_id, :user_id, :voteable_type], :unique => true, :name => 'vote_key'
   end
 end

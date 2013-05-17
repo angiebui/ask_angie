@@ -34,10 +34,12 @@ answers = Answer.create([
 ])
 
 votes = Vote.create([ 
-  {voteable_id: 1, user_id: 2, upvote: true, voteable_type: "Question"},
-  {voteable_id: 1, user_id: 3, upvote: true, voteable_type: "Answer"},
-  {voteable_id: 2, user_id: 1, upvote: false, voteable_type: "Question"},
-  {voteable_id: 3, user_id: 1, upvote: true, voteable_type: "Answer"},
+  {voteable_id: 1, user_id: 1, upvote: true, voteable_type: "Question"},
+  {voteable_id: 2, user_id: 2, upvote: false, voteable_type: "Question"},
+  {voteable_id: 3, user_id: 3, upvote: false, voteable_type: "Question"},
+
+  {voteable_id: 1, user_id: 1, upvote: true, voteable_type: "Answer"},
+  {voteable_id: 2, user_id: 2, upvote: true, voteable_type: "Answer"},
   {voteable_id: 3, user_id: 3, upvote: false, voteable_type: "Answer"}
 ])
 

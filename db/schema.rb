@@ -72,6 +72,6 @@ ActiveRecord::Schema.define(:version => 20130517025752) do
     t.datetime "updated_at",    :null => false
   end
 
-  add_index "votes", ["voteable_id", "user_id"], :name => "vote_key", :unique => true
+  add_index "votes", ["voteable_id", "user_id", "voteable_type"], :name => "vote_key", :unique => true
 
 end
