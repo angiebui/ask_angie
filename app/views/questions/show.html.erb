@@ -1,23 +1,26 @@
-<h4>Question:</h4> 
-<h2 class="question-title"> 
-  <%= @question.title %> 
+<h3 class="question-title"> 
+  <%= @question.title.capitalize %>   
+  <small>
+    <% @question.tags.map do |tag|  %>
+        <%= link_to "#" + tag.name, "/tags/#{tag.name}" %> 
+      <% end %>
+  </small>
+</h3>
+
+<h2 class = "question-title">
+  <%= @question.body.capitalize %>
 </h2>
 
-<p><%= @question.body %></p>
+<small>
+  <%= link_to @question.topic.title.downcase, "/topics/#{@question.topic.title}" %> | Asked by <%= link_to @question.user.username, @question.user %> <%= @question.time_ago %>
+</small>
 
 <p>
   <%= image_tag @question.photo.url.slice(1..-1) if @question.photo_url %>
 </p>
 
-<br>
-
-<small>
-  <%= link_to @question.user.username, @question.user %>
-</small>
-
-
 <hr>
-
+<br>
 
 <div class="answer-container">
   <%= form_for [@answer] do |f| %>
@@ -29,7 +32,7 @@
 
   <div class="answers">
     <h4>Answers</h4>
-    <hr>
+
     <% @question.answers.sorted_by_vote.each do |answer| %>
     <div class="answer">
       <div class="votes">
@@ -40,11 +43,10 @@
       <div class="answer-text"><%= answer.body %><br>
         <small class="byline">posted by 
           <%= link_to answer.user.username, answer.user %> 
-          <%= answer.time_ago %> minutes ago
+          <%= answer.time_ago %> 
         </small>
       </div>
     </div>
     <% end %>
   </div>
 </div>
-

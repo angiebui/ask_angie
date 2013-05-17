@@ -4,7 +4,6 @@ users = User.create([
   {username: "Jkai", email: "jkai@gmail.com", password: "password", gender: "male"}
   ])
 
-
 topics = Topic.create([
   {title: "dates"},
   {title: "dinner"},
@@ -25,15 +24,17 @@ answers = Answer.create([
   {question_id: 2, user_id: 3, body: "Shes mad at you, bro!"}
   ])
 
-
-
-
-
-
 votes = Vote.create([ 
   {answer_id: 1, user_id: 2, upvote: true},
   {answer_id: 1, user_id: 3, upvote: true},
   {answer_id: 2, user_id: 1, upvote: false},
   {answer_id: 3, user_id: 1, upvote: true},
   {answer_id: 3, user_id: 3, upvote: false}
+  ])
+
+tags = Tag.create([
+  {name: "Jkai"},
+  {name: "fun ideas"},
+  {name: "bad advice"},
+  {name: "crazy"},
   ])
