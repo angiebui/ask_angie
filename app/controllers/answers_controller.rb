@@ -48,7 +48,8 @@ class AnswersController < ApplicationController
   def create_vote(arg)
     @vote = Vote.new
     @vote.user_id = current_user.id
-    @vote.answer_id = @answer.id
+    @vote.voteable_id = @answer.id
+    @vote.voteable_type = 'Answer'
     @vote.upvote = arg
     @vote.save!
   end
