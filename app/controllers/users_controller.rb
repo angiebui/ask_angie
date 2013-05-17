@@ -32,8 +32,9 @@ class UsersController < ApplicationController
   end
 
   def show    
+    @user = User.find(params[:id])
+    @questions = @user.questions
+    @answers = @user.answers.sorted_by_vote
   end
-
-
 
 end

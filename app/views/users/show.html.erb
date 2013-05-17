@@ -1,1 +1,22 @@
-<h1> HELLO I"M HERE </h1>
+<h2 class="username"> <%= @user.username %> </h2>
+
+<span class="user-answers">
+<h3>Questions</h3>
+<hr>
+
+</span>
+
+
+<span class="user-questions">
+<h3>Answers</h3>
+<hr>
+  <% @answers.each do |answer| %>
+  <p>
+    <%= link_to answer.body, answer.question %><br>
+    <small>
+      <%= answer.vote_count %> votes | 
+      posted <%= answer.time_ago %>
+    </small>
+  </p>
+  <% end %>
+</span>

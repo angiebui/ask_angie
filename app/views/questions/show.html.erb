@@ -1,38 +1,44 @@
-<h4>Question:</h4> <h2 class="question-title"><%= @question.title %> </h2>
+<h4>Question:</h4> 
+<h2 class="question-title"> 
+  <%= @question.title %> 
+</h2>
 
 <p><%= @question.body %></p>
+
 <p><%= image_tag @question.photo_url.slice(1..-1) if @question.photo_url %></p>
 <br><small><%= link_to @question.user.username, @question.user %></small>
+
+<p><%= image_tag @question.photo_url.slice(1..-1) %></p>
+<br>
+<small><%= link_to @question.user.username, @question.user %></small>
 <hr>
+
 <div class="answer-container">
   <%= form_for [@answer] do |f| %>
-    <%= f.hidden_field :question_id, :value => @question.id %>
-    <%= f.text_field :body, placeholder: "What are your thoughts?" %> 
-    <%= f.submit "Add answer" %>
+  <%= f.hidden_field :question_id, :value => @question.id %>
+  <%= f.text_field :body, placeholder: "What are your thoughts?" %> 
+  <%= f.submit "Add answer" %>
   <% end %>
   <p><%= flash[:notice] if flash[:notice] %></p>
 
-
   <div class="answers">
     <h4>Answers</h4>
-    
+    <hr>
     <% @question.answers.sorted_by_vote.each do |answer| %>
-      <div class="answer">
-          <div class="votes">
-            <%= image_tag 'uparrow.png', class: 'upvote', :data => {:answer_id =>  answer.id} %>
-            <span class="vote-number"> <%= answer.vote_count %></span>
-            <%= image_tag 'downarrow.png', class: 'downvote', :data => {:answer_id =>  answer.id} %>
-          </div>
-
-
-          <div class="answer-text"><%= answer.body %><br>
-            <small class="byline">posted by 
-              <%= link_to answer.user.username, answer.user %> 
-              <%= answer.time_ago %> minutes ago
-            </small>
-          </div>
-        </div>
-      <% end %>
+    <div class="answer">
+      <div class="votes">
+        <%= image_tag 'uparrow.png', class: 'upvote', :data => {:answer_id =>  answer.id} %>
+        <span class="vote-number"> <%= answer.vote_count %></span>
+        <%= image_tag 'downarrow.png', class: 'downvote', :data => {:answer_id =>  answer.id} %>
+      </div>
+      <div class="answer-text"><%= answer.body %><br>
+        <small class="byline">posted by 
+          <%= link_to answer.user.username, answer.user %> 
+          <%= answer.time_ago %> minutes ago
+        </small>
+      </div>
+    </div>
+    <% end %>
   </div>
 </div>
 
