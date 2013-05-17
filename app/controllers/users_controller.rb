@@ -10,6 +10,7 @@ class UsersController < ApplicationController
       redirect_to user_path(user.id), :notice => "Hello, #{user.username}"
     else
       redirect_to :root, :notice => "Try Again Gurrl"
+
     end
   end
 
