@@ -6,21 +6,15 @@
   <%= @question.title.capitalize %> 
 </p>
 
-
 <small>
   <%= link_to @question.topic.title.downcase, "/topics/#{@question.topic.title}" %> | Asked by <%= link_to @question.user.username, @question.user %> <%= @question.time_ago %>
 </small>
-<hr>
+
 <p>
   <%= image_tag @question.photo_url.slice(1..-1) if @question.photo_url %>
 </p>
-
-<br>
-
-
-
-
 <hr>
+<br>
 
 <div class="answer-container">
   <%= form_for [@answer] do |f| %>
