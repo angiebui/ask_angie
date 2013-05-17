@@ -7,7 +7,7 @@ describe 'Question', :js => true do
 
   describe "#index" do
     it "should show questions" do
-      visit 
+      visit root_path
 
     end
   end

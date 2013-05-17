@@ -58,10 +58,6 @@ DbcOverflow::Application.configure do
    # Specify what domain to use for mailer URLs
   config.action_mailer.default_url_options = {host: "localhost:3000"}
 
-  CarrierWave.configure do |config|
-    config.storage = :file
-    config.root = "#{::Rails.root}/app/assets/images"
-    config.store_dir = "uploads"
-  end
+
 
 end
