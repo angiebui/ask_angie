@@ -5,9 +5,8 @@ class TopicsController < ApplicationController
     @questions = @topic.questions
   end
 
-
   def index
-    @topic = Topic.all
+    @topics = Topic.all
   end
 
 
