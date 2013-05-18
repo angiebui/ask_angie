@@ -25,7 +25,7 @@ class UsersController < ApplicationController
         session[:id] = user.id
         redirect_to root_path, :notice => "Hello, #{user.username}"
       else
-        redirect_to login_users_path, :notice => "Invalid email or password"
+        redirect_to login_users_path, :notice => "Invalid username or password. Please try again."
       end
     else
     end
