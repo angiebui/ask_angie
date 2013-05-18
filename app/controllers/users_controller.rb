@@ -9,8 +9,7 @@ class UsersController < ApplicationController
       session[:id] = user.id
       redirect_to user_path(user.id), :notice => "Hello, #{user.username}"
     else
-      redirect_to :root, :notice => "Try Again Gurrl"
-
+      redirect_to new_user_path, :notice => user.errors.full_messages
     end
   end
 
