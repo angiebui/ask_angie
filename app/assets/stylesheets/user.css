@@ -1,4 +1,4 @@
-.user-answers {
+.user-answers, .about-us {
   text-align: center;
   float:left;
   width:48%;
@@ -6,7 +6,7 @@
 
 }
 
-.user-questions {
+.user-questions, .about-team {
   text-align: center;
   float:right;
   width:48%;
@@ -35,6 +35,10 @@
 
 .signup {
   text-align: center;
+}
+
+.signup h2 {
+  margin: 0px;
 }
 
 .login {

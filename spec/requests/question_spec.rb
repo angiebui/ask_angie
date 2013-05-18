@@ -28,7 +28,7 @@ describe 'Question', :js => true do
 
       fill_in 'user_username', with: "Tester" # user_username is id of form field
       fill_in 'user_password', with: "password"
-      click_button 'Login!'
+      click_button 'create account'
     end
 
     context "with valid input" do

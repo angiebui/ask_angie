@@ -26,6 +26,7 @@ DbcOverflow::Application.routes.draw do
 
   get 'tags/:name' => 'tags#show'
   get '/tags' => 'tags#index'
+  get '/about' => 'users#about'
 
   root to: 'questions#index'
 end

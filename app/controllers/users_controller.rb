@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     user = User.new(params[:user])
     if user.save
       session[:id] = user.id
-      redirect_to user_path(user.id), :notice => "Hello, #{user.username}"
+      redirect_to user_path(user.id)
     else
       redirect_to new_user_path, :notice => user.errors.full_messages
     end
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       user = User.find_by_username(params[:user]["username"])
       if user && user.authenticate(params[:user]["password"])
         session[:id] = user.id
-        redirect_to root_path, :notice => "Hello, #{user.username}"
+        redirect_to root_path 
       else
         redirect_to login_users_path, :notice => "Invalid username or password. Please try again."
       end
@@ -35,6 +35,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @questions = @user.questions
     @answers = @user.answers.sorted_by_vote
+  end
+
+  def about
   end
 
 end

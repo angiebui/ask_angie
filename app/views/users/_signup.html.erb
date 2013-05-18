@@ -1,12 +1,12 @@
 <div class='signup'>
   <h2> sign up </h2>
-  <p class='errors'>
+  <div class='errors'>
     <% if flash[:notice] %>
       <% flash[:notice].each do |notice| %>
-        <p><%= notice %></p>
+        <p><small><%= notice %></small></p>
       <% end %>
     <% end %>
-  </p>
+  </div>
 </div>
 
 <div class='signup-form'>
