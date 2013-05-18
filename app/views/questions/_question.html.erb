@@ -13,7 +13,7 @@
   <p>
     <small>
       <%= pluralize(question.votes.count, 'vote') %> |
-      <%= pluralize(question.answers.count, 'answer') %>
+      <%= link_to pluralize(question.answers.count, 'answer'), question %>
     </small>
   </p>
   <p>
