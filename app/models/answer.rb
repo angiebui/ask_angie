@@ -1,7 +1,7 @@
 class Answer < ActiveRecord::Base
   belongs_to :user
   belongs_to :question
-  has_many :votes
+  has_many :votes, :as => :voteable
   after_save :answer_notification_email
 
   validates_presence_of :body
@@ -32,8 +32,8 @@ class Answer < ActiveRecord::Base
   end
 
   def vote_count
-    upvote = Vote.where("answer_id = ? AND upvote = ?", self.id, true).count
-    downvote = Vote.where("answer_id = ? AND upvote = ?", self.id, false).count
+    upvote = Vote.where("voteable_type = ? AND voteable_id = ? AND upvote = ?", 'Answer', self.id, true).count
+    downvote = Vote.where("voteable_type = ? AND voteable_id = ? AND upvote = ?",'Answer', self.id, false).count
     upvote - downvote 
   end
 

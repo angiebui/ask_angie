@@ -19,4 +19,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def upvoted? voteable
+    votes = self.votes.where("voteable_id = ? AND voteable_type = ?", voteable.id, voteable.class.to_s).last.upvote?
+  end
+
+  def voted? voteable
+    vote = self.votes.find_by_voteable_id_and_voteable_type(voteable.id, voteable.class.to_s)
+  end
+
 end

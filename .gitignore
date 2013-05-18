@@ -16,4 +16,4 @@
 
 config/environments/email_keys.yml
 
-/app/images/uploads/*
+app/assets/images/uploads/*
