@@ -4,6 +4,7 @@ gem 'rails', '3.2.13'
 gem 'carrierwave'
 gem 'pg'
 gem 'mini_magick'
+gem 'thin'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
