@@ -1,7 +1,10 @@
 DbcOverflow::Application.routes.draw do
   
-  
-  resources :questions
+  resources :questions do
+    collection do
+      post 'search'
+    end
+  end
 
   resources :users do
     collection do 

@@ -25,8 +25,8 @@ class Question < ActiveRecord::Base
     end
   end
 
-  def self.answer_count
-    all.sort_by { |question| -question.answers.count }
+  def sort
+    self.sort_by { |question| question.answers.count }.reverse!
   end
 
   def tag_list
@@ -36,6 +36,17 @@ class Question < ActiveRecord::Base
   def tag_list=(new_tags)
     tag_names = new_tags.split(/,\s+/)
     self.tags = tag_names.map { |name| Tag.find_or_create_by_name(name)}
+  end
+
+  def self.search(term)
+    if term
+      questions = where("title LIKE ? OR body LIKE ?", "%#{term}%", "%#{term}%").uniq
+      tags = Tag.search(term).map(&:questions).flatten.uniq
+      answers = Answer.search(term).map(&:question).uniq
+      {:questions => questions, :tags => tags, :answers => answers}
+    else
+      find(:all)
+    end
   end
 
 end

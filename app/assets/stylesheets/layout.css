@@ -7,7 +7,10 @@ a {
   color: #E83535;
 }
 
-
+.search-bar {
+  float: left;
+  padding-left: 1em;
+}
 
 a:hover {
   color:black;

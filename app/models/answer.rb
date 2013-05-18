@@ -37,4 +37,7 @@ class Answer < ActiveRecord::Base
     upvote - downvote 
   end
 
+  def self.search(term)
+    where("body LIKE ?", "%#{term}%")
+  end
 end
