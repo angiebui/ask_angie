@@ -1,5 +1,10 @@
-Hello <%= @question_owner.username %>,
+<h3> Hello <%= @question_owner.username %>,</h3>
 
-Somebody has responded to your question. Go to <%= link_to "AskAngie", @answer.question %> to check it out!
+<p>Somebody has responded to your question, "<%= @question %>".</p>
 
-From your friends at AskAngie.
+<p>Answer by <%= @answer.user.username %>:</p>
+<p><%= @body %></p>
+
+Go to <%= link_to "AskAngie", @answer.question %> to check it out!
+
+<p>From your friends at AskAngie.</p>

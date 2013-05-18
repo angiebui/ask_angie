@@ -11,7 +11,7 @@ describe 'Question', :js => true do
       visit root_path
       page.should have_content question.title
       page.should have_content question.body
-      page.should have_content question.user.username
+      page.should have_content question.user.username.capitalize
     end
   end
 
@@ -28,7 +28,7 @@ describe 'Question', :js => true do
 
       fill_in 'user_username', with: "Tester" # user_username is id of form field
       fill_in 'user_password', with: "password"
-      click_button 'Login!'
+      click_button 'login'
     end
 
     context "with valid input" do
