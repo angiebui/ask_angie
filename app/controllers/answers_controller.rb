@@ -15,26 +15,34 @@ class AnswersController < ApplicationController
   end
 
   def upvote
-    if vote = @answer.votes.find_by_user_id(current_user.id)
-      update_vote(vote, true)
-      score = @answer.vote_count
-      return render :json => {answer_score: score, action_type: "update_vote"}
+    if current_user
+      if vote = @answer.votes.find_by_user_id(current_user.id)
+        update_vote(vote, true)
+        score = @answer.vote_count
+        return render :json => {answer_score: score, action_type: "update_vote"}
+      else
+        create_vote(true) 
+        score = @answer.vote_count
+        return render :json => {answer_score: score, action_type: "create_vote"}
+      end
     else
-      create_vote(true) 
-      score = @answer.vote_count
-      return render :json => {answer_score: score, action_type: "create_vote"}
+     return render :json => {error: "You must login to vote"}
     end
   end
 
   def downvote
-    if vote = @answer.votes.find_by_user_id(current_user.id)
-      update_vote(vote, false)
-      score = @answer.vote_count
-      return render :json => {answer_score: score, action_type: "update_vote"}
+    if current_user
+      if vote = @answer.votes.find_by_user_id(current_user.id)
+        update_vote(vote, false)
+        score = @answer.vote_count
+        return render :json => {answer_score: score, action_type: "update_vote"}
+      else
+        create_vote(false) 
+        score = @answer.vote_count
+        return render :json => {answer_score: score, action_type: "create_vote"}
+      end
     else
-      create_vote(false) 
-      score = @answer.vote_count
-      return render :json => {answer_score: score, action_type: "create_vote"}
+      return render :json => {error: "You must login to vote"}
     end
   end
 
@@ -43,18 +51,18 @@ class AnswersController < ApplicationController
   def update_vote(vote, arg)
    vote.upvote = arg
    vote.save
-  end
+ end
 
-  def create_vote(arg)
-    @vote = Vote.new
-    @vote.user_id = current_user.id
-    @vote.voteable_id = @answer.id
-    @vote.voteable_type = 'Answer'
-    @vote.upvote = arg
-    @vote.save!
-  end
+ def create_vote(arg)
+  @vote = Vote.new
+  @vote.user_id = current_user.id
+  @vote.voteable_id = @answer.id
+  @vote.voteable_type = 'Answer'
+  @vote.upvote = arg
+  @vote.save!
+end
 
-  def get_answer_id
-    @answer = Answer.find(params[:id])
-  end
+def get_answer_id
+  @answer = Answer.find(params[:id])
+end
 end

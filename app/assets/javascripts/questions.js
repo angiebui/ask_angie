@@ -20,6 +20,11 @@ $(document).ready(function() {
       url = "/answers/{id}/{buttonType}".format({'id': id, 'buttonType' : buttonType });
 
       $.post(url, function(data) {
+        if (data.error) {
+          $('.error-container').text(data.error);
+          $('.answers').unbind('click');
+        }
+
         $(self).siblings('.vote-number').html(data.answer_score);
         var oppositeImage = $(self).siblings('img');
         oppositeImage.attr('src', oppositeImage.attr('src').replace('selected_', '')) 
@@ -27,8 +32,7 @@ $(document).ready(function() {
         if ($(self).attr('src').indexOf("selected") === -1)
         {imageSource.shift();
          imageSource[1] = 'selected_'+imageSource[1]
-         $(self).attr('src', '/'+imageSource.join('/'))};
-      
+         $(self).attr('src', '/'+imageSource.join('/'))};      
       });
 
     });
