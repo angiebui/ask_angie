@@ -11,7 +11,7 @@ describe 'Question', :js => true do
       visit root_path
       page.should have_content question.title
       page.should have_content question.body
-      page.should have_content question.user.username
+      page.should have_content question.user.username.capitalize
     end
   end
 
