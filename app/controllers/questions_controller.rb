@@ -36,6 +36,11 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def edit
+    @question = Question.find(params[:id])
+    @topics = Topic.all
+  end
+
   def search
     @questions_by_answer_count = Question.search params[:search]
     @search = params[:search]

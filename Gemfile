@@ -25,4 +25,5 @@ group :test, :development do
   gem 'selenium-webdriver'
   gem 'carrierwave'
   gem 'mini_magick'
+  gem 'sqlite3'
 end
