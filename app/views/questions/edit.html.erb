@@ -1,7 +1,7 @@
 <h2> Edit Your Question </h2>
 <div class="question-form">
   <span class="notice"><%= flash[:notice] if flash[:notice] %></span>
-  <%= form_for @question  do |f| %>
+  <%= form_for @question do |f| %>
 
     <p><%= f.label "Title" %></p>
     <p><%= f.text_field :title %></p>
@@ -18,7 +18,7 @@
     <p><%= f.label "Tags" %></p>
     <p><%= f.text_field :tag_list, :placeholder => "tags, separated by comma" %></p>
     
-    <p><%= f.submit "ask question" %></p>
+    <p><%= f.submit "Update Question" %></p>
 
   <% end %>
 </div>

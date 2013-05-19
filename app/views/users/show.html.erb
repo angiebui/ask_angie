@@ -5,7 +5,7 @@
 <hr>
 	<% @questions.each do |question| %>
   <p>
-    <%= link_to question.title, question %> <%= link_to 'Edit', edit_question_path(question.id), :class => "edit-button"%><br>
+    <%= link_to question.title, question %> <%= link_to 'Edit', edit_question_path(question.id), :class => "button"%><%= button_to "Remove", {:class => "button", :controller => :questions, :action => :destroy, :id => question.id}, :confirm => "Are you sure? You cannot undo this action", :method => :delete %><br>
     <small>
       <%= pluralize(question.answers.count, 'answer') %> | 
       posted <%= question.time_ago %>
