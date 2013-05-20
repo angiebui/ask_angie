@@ -1,8 +1,9 @@
 class QuestionsController < ApplicationController
+  before_filter :get_question, only: [:upvote, :downvote, :create_vote]
 
   def index
     @questions = Question.search(params[:search])
-    @questions_by_answer_count = @questions.sort
+    @questions_by_vote_count = Question.sorted_by_vote
     @topics = Topic.all
   end
   
@@ -41,5 +42,55 @@ class QuestionsController < ApplicationController
     @search = params[:search]
   end
 
-end
+  def upvote
+    if current_user
+      if vote = @question.votes.find_by_user_id(current_user.id)
+        update_vote(vote, true)
+        score = @question.vote_count
+        return render :json => {answer_score: score, action_type: "update_vote"}
+      else
+        create_vote(true) 
+        score = @question.vote_count
+        return render :json => {answer_score: score, action_type: "create_vote"}
+      end
+    else
+     return render :json => {error: "You must login to vote"}
+    end
+  end
 
+  def downvote
+    if current_user
+      if vote = @question.votes.find_by_user_id(current_user.id)
+        update_vote(vote, false)
+        score = @question.vote_count
+        return render :json => {answer_score: score, action_type: "update_vote"}
+      else
+        create_vote(false) 
+        score = @question.vote_count
+        return render :json => {answer_score: score, action_type: "create_vote"}
+      end
+    else
+      return render :json => {error: "You must login to vote"}
+    end
+  end
+
+  private
+
+  def update_vote(vote, arg)
+   vote.upvote = arg
+   vote.save
+  end
+
+ def create_vote(arg)
+  @vote = Vote.new
+  @vote.user_id = current_user.id
+  @vote.voteable_id = @question.id
+  @vote.voteable_type = 'Question'
+  @vote.upvote = arg
+  @vote.save!
+  end
+
+  def get_question
+    @question = Question.find(params[:id])
+  end
+end

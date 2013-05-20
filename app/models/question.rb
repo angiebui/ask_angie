@@ -32,6 +32,10 @@ class Question < ActiveRecord::Base
 
   def sort
     self.sort_by { |question| question.answers.count }.reverse!
+  end 
+
+  def self.sorted_by_vote
+    all.sort_by { |question| -question.vote_count }
   end
 
   def tag_list

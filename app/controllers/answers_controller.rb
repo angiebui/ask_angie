@@ -51,7 +51,7 @@ class AnswersController < ApplicationController
   def update_vote(vote, arg)
    vote.upvote = arg
    vote.save
- end
+  end
 
  def create_vote(arg)
   @vote = Vote.new
@@ -60,9 +60,9 @@ class AnswersController < ApplicationController
   @vote.voteable_type = 'Answer'
   @vote.upvote = arg
   @vote.save!
-end
+  end
 
-def get_answer_id
-  @answer = Answer.find(params[:id])
-end
+  def get_answer_id
+    @answer = Answer.find(params[:id])
+  end
 end

@@ -4,6 +4,10 @@ DbcOverflow::Application.routes.draw do
     collection do
       post 'search'
     end
+    member do
+      post 'upvote'
+      post 'downvote'
+    end
   end
 
   resources :users do
