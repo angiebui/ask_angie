@@ -1,27 +1,19 @@
 <div class='question-home'>
-  <span class="question_title">
-    <%= link_to question.title, question %>
-  </span> 
-  <small> asked by 
-    <%= link_to question.user.username.capitalize, question.user %> 
-    <%= question.time_ago %> 
-  </small>
-  <p>
-    <%= question.body %> 
-  </p>
-  <%= image_tag question.photo.thumb.url.slice(1..-1), class: "home-thumb" if question.photo_url %>
-  <p>
-    <small>
-      <%= pluralize(question.votes.count, 'vote') %> |
-      <%= pluralize(question.answers.count, 'answer') %>
-    </small>
-  </p>
-  <p>
-    <small>
-      <% question.tags.map do |tag|  %>
-        <%= link_to "#" + tag.name, "/tags/#{tag.name}" %> 
-      <% end %>
-    </small>
-  </p>
-  <hr>
+    <div class='question-arrows'>
+      <% if current_user && current_user.voted?(question) %>
+        <% image_names = current_user.upvoted?(question) ? ['selected_uparrow', 'downarrow'] : ['uparrow', 'selected_downarrow'] %>
+        <div class="vote">
+          <% image_names.each do |name| %>
+            <% class_name = name.split('_').last == 'uparrow' ? 'upvote' : 'downvote'%>
+            <%= image_tag "#{name}.png", class: class_name, :data => {:voteable_id =>  question.id, :image => "#{name}.png"} %>
+            <% if image_names.first == name %>
+              <span class="vote-number"><%= question.vote_count %></span>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
+       <%= render partial: 'default_vote_buttons', locals: {question: question} %>
+       <% end %>
+    </div>
+  <%= render partial: 'question_text', locals: {question: question} %>
 </div>

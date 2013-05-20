@@ -4,6 +4,10 @@ DbcOverflow::Application.routes.draw do
     collection do
       post 'search'
     end
+    member do
+      post 'upvote'
+      post 'downvote'
+    end
   end
 
   resources :users do
@@ -26,6 +30,7 @@ DbcOverflow::Application.routes.draw do
 
   get 'tags/:name' => 'tags#show'
   get '/tags' => 'tags#index'
+  get '/about' => 'users#about'
 
   root to: 'questions#index'
 end

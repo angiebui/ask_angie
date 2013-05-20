@@ -14,10 +14,25 @@
 
 }
 
+.about-team, .about-us {
+  text-align: center;
+  width:48%;
+  margin-right: auto;
+
+}
+
 .username {
   text-align: center;
 }
 
+.about {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.errors-container {
+  color: red;
+}
 
 .user-questions p {
   text-align: left;
@@ -27,4 +42,20 @@
 .user-answers p {
   text-align: left;
   padding-left: 1em;
+}
+
+.signup-form {
+  text-align: center;
+}
+
+.signup {
+  text-align: center;
+}
+
+.signup h2 {
+  margin: 0px;
+}
+
+.login {
+  text-align: center;
 }

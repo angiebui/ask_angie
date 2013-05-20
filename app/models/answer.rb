@@ -15,7 +15,11 @@ class Answer < ActiveRecord::Base
   def time_ago
     time = (Time.now - self.created_at) 
     if time > 86400
+      if time.to_i/86400 == 1
+        "#{time.to_i/86400} day ago"
+      else
       "#{time.to_i/86400} days ago"
+      end
     elsif time > 7200
       "#{time.to_i/3600} hours ago"
     elsif time > 3600

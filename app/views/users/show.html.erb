@@ -3,9 +3,12 @@
 <span class="user-answers">
 <h3>Questions</h3>
 <hr>
+  <% if @questions.empty? %>
+   <p><em>You haven't asked any questions yet!</em></p>
+  <% end %>
 	<% @questions.each do |question| %>
   <p>
-    <%= link_to question.body, question %><br>
+    <%= link_to (truncate(question.body, length: 65, omission: '...?')), question %><br> 
     <small>
       <%= pluralize(question.answers.count, 'answer') %> | 
       posted <%= question.time_ago %>
@@ -18,6 +21,9 @@
 <span class="user-questions">
 <h3>Answers</h3>
 <hr>
+  <% if @answers.empty? %>
+   <p><em>You haven't answered any questions yet!</em></p>
+  <% end %>
   <% @answers.each do |answer| %>
   <p>
     <%= link_to answer.body, answer.question %><br>
