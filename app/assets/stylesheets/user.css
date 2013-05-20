@@ -1,4 +1,4 @@
-.user-answers, .about-us {
+.user-answers {
   text-align: center;
   float:left;
   width:48%;
@@ -6,7 +6,7 @@
 
 }
 
-.user-questions, .about-team {
+.user-questions {
   text-align: center;
   float:right;
   width:48%;
@@ -14,8 +14,20 @@
 
 }
 
+.about-team, .about-us {
+  text-align: center;
+  width:48%;
+  margin-right: auto;
+
+}
+
 .username {
   text-align: center;
+}
+
+.about {
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 
