@@ -13,4 +13,10 @@
   font-size: 16pt;
 }
 
+.question-text {
+  padding-left: 33px;
+}
 
+.question-arrows {
+  margin-top: 5px;
+}
