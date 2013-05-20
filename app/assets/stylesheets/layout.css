@@ -51,3 +51,15 @@ a:hover {
   font-family: 'Goudy Bookletter 1911', serif;
 }
 
+.button {
+  font-family: 'Average Sans', sans-serif;
+  text-decoration: none;
+  color: #E83535;
+  background-color: whitesmoke;
+  float: right;
+}
+
+.profile_tools {
+  width: 90px;
+  float: right;
+}
