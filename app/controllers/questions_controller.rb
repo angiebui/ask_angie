@@ -50,7 +50,11 @@ end
 def destroy
   @question = Question.find(params[:id])
   @question.destroy
-  redirect_to user_path(current_user.id)
+
+  respond_to do |format|
+    format.html {redirect_to user_path(current_user.id)}
+    format.js { render :nothing => true }
+  end
 end
 
 def search
