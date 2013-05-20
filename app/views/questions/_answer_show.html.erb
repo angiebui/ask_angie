@@ -1,6 +1,8 @@
 <div class="answers">
   <h4>Answers</h4>
-
+    <% if @question.answers.empty? %>
+      <p><em>There are no answers yet. Be the first!</em></p>
+    <% end %>
   <% @question.answers.sorted_by_vote.each do |answer| %>
   <div class="answer">
     <div class="votes">

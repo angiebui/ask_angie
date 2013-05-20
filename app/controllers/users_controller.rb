@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     user = User.new(params[:user])
     if user.save
       session[:id] = user.id
-      redirect_to user_path(user.id)
+      redirect_to root_path
     else
       redirect_to new_user_path, :notice => user.errors.full_messages
     end
