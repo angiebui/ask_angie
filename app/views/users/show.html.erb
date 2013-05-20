@@ -4,13 +4,17 @@
 <h3>Questions</h3>
 <hr>
 	<% @questions.each do |question| %>
+  <span>
   <p>
-    <%= link_to question.body, question %><br>
+    <%= link_to question.title, question %> 
+    <%= link_to 'Edit', edit_question_path(question.id), :class => "button edit"%>
+    <%= button_to "Remove", {:controller => :questions, :action => :destroy, :id => question.id}, :form_class => "profile_tools", :class => "button delete", :confirm => "Are you sure? You cannot undo this action", :method => :delete, :remote => true %><br>
     <small>
       <%= pluralize(question.answers.count, 'answer') %> | 
       posted <%= question.time_ago %>
     </small>
   </p>
+</span>
 	<% end %>
 </span>
 

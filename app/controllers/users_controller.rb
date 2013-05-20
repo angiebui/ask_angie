@@ -9,14 +9,14 @@ class UsersController < ApplicationController
       session[:id] = user.id
       redirect_to user_path(user.id), :notice => "Hello, #{user.username}"
     else
-      redirect_to :root, :notice => "Try Again Gurrl"
+      redirect_to :root, :notice => "Try Again Gurrl."
 
     end
   end
 
   def signout
     session.clear
-    redirect_to :root, :notice => "bye bye"
+    redirect_to :root, :notice => "Bye, bye!"
   end
 
   def login
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       user = User.find_by_username(params[:user]["username"])
       if user && user.authenticate(params[:user]["password"])
         session[:id] = user.id
-        redirect_to root_path, :notice => "Hello, #{user.username}"
+        redirect_to root_path, :notice => "Hello, #{user.username}!"
       else
         redirect_to login_users_path, :notice => "Invalid email or password"
       end
@@ -34,6 +34,7 @@ class UsersController < ApplicationController
 
   def show    
     @user = User.find(params[:id])
+    redirect_to root_path, :notice => "Nice try, buddy. That's not your account."  unless @user == current_user
     @questions = @user.questions
     @answers = @user.answers.sorted_by_vote
   end
