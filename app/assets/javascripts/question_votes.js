@@ -20,9 +20,10 @@ $(document).ready(function() {
 
     $.post(url, function(data) {
       if (data.error) {
-        $('.question-errors').text(data.error);
+        $('.errors-container').html('<small>' + data.error + '</small>').effect('highlight');
         $('.question-arrows').unbind('click');
       }
+      else {
 
         $(self).siblings('.vote-number').html(data.answer_score);
         var oppositeImage = $(self).siblings('img');
@@ -32,7 +33,7 @@ $(document).ready(function() {
         {imageSource.shift();
          imageSource[1] = 'selected_'+imageSource[1]
          $(self).attr('src', '/'+imageSource.join('/'))};     
-      
+      }
       });
   
   });

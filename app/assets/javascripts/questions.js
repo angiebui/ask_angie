@@ -21,10 +21,10 @@ $(document).ready(function() {
 
       $.post(url, function(data) {
         if (data.error) {
-          $('.error-container').text(data.error);
+          $('.errors-container').html('<small>' + data.error + '</small>').effect('highlight');
           $('.answers').unbind('click');
         }
-
+        else {
         $(self).siblings('.vote-number').html(data.answer_score);
         var oppositeImage = $(self).siblings('img');
         oppositeImage.attr('src', oppositeImage.attr('src').replace('selected_', '')) 
@@ -32,7 +32,8 @@ $(document).ready(function() {
         if ($(self).attr('src').indexOf("selected") === -1)
         {imageSource.shift();
          imageSource[1] = 'selected_'+imageSource[1]
-         $(self).attr('src', '/'+imageSource.join('/'))};      
+         $(self).attr('src', '/'+imageSource.join('/'))};
+        }      
       });
 
     });

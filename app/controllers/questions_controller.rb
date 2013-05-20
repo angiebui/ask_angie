@@ -54,7 +54,7 @@ class QuestionsController < ApplicationController
         return render :json => {answer_score: score, action_type: "create_vote"}
       end
     else
-     return render :json => {error: "You must login to vote"}
+     return render :json => {error: "You must log in to vote"}
     end
   end
 

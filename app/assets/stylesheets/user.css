@@ -30,6 +30,9 @@
   margin-bottom: 40px;
 }
 
+.errors-container {
+  color: red;
+}
 
 .user-questions p {
   text-align: left;
