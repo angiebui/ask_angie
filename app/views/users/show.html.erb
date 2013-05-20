@@ -5,7 +5,7 @@
 <hr>
 	<% @questions.each do |question| %>
   <p>
-    <%= link_to question.body, question %><br>
+    <%= link_to (truncate(question.body, length: 65, omission: '...?')), question %><br> 
     <small>
       <%= pluralize(question.answers.count, 'answer') %> | 
       posted <%= question.time_ago %>
