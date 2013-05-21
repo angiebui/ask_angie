@@ -10,6 +10,7 @@ a {
 .search-bar {
   float: left;
   padding-left: 1em;
+  
 }
 
 a:hover {
@@ -62,4 +63,23 @@ a:hover {
 .profile_tools {
   width: 90px;
   float: right;
+}
+
+#search {
+  margin: 0 0 3px 0;
+  font-weight: bold;
+}
+
+#search input {
+  width: 400px;
+  padding: 5px;
+  font-size: 1.4em;
+  border: none;
+  border-bottom: 1px solid #fff;
+  border-right: 1px solid #fff;
+  background: #e2e1d7;
+  margin-bottom: 15px;
+  border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
 }

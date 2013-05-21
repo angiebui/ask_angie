@@ -1,24 +1,6 @@
-<h2> Ask Question </h2>
 <div class="question-form">
   <span class="notice"><%= flash[:notice] if flash[:notice] %></span>
-  <%= form_for @question  do |f| %>
-
-    <p><%= f.label "Title" %></p>
-    <p><%= f.text_field :title %></p>
-    
-    <p><%= f.label "Topic" %></p>
-    <%= select_tag(:topic_id, options_for_select(@topics.map {|topic| [topic.title, topic.id]})) %>
-
-    <p><%= f.label "Question" %></p>
-    <p><%= f.text_area :body %></p>
-
-    <p><%= f.label "Upload a Photo" %></p>
-    <p><%= f.file_field :photo %></p>
-    
-    <p><%= f.label "Tags" %></p>
-    <p><%= f.text_field :tag_list, :placeholder => "tags, separated by comma" %></p>
-    
-    <p><%= f.submit "ask question" %></p>
-
-  <% end %>
+  <%= render :partial => "new_question", :formats => [:html] %>
 </div>
+
+

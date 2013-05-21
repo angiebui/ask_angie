@@ -44,18 +44,41 @@
   padding-left: 1em;
 }
 
-.signup-form {
-  text-align: center;
-}
 
 .signup {
-  text-align: center;
+  margin: 15px 0;
 }
 
-.signup h2 {
-  margin: 0px;
-}
 
 .login {
-  text-align: center;
+  text-align: left;
 }
+
+#new_user {
+  padding: 10px 15px 15px 10px;
+}
+
+#new_user label, #new_user input {
+  display: block;
+  margin: 0 0 3px 0;
+  font-weight: bold;
+}
+
+#new_user input, #new_user select {
+  width: 400px;
+  padding: 5px;
+  font-size: 1.4em;
+  border: none;
+  border-bottom: 1px solid #fff;
+  border-right: 1px solid #fff;
+  background: #e2e1d7;
+  margin-bottom: 15px;
+  border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+}
+
+#new_user input:focus, #new_user select:focus {
+  background: #fff;
+}
+

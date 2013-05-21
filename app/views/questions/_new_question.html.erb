@@ -1,0 +1,20 @@
+  <%= form_for @question  do |f| %>
+
+    <%= f.label "Title" %>
+    <%= f.text_field :title %>
+    
+    <%= f.label "Topic" %>
+    <%= select_tag(:topic_id, options_for_select(@topics.map {|topic| [topic.title, topic.id]})) %>
+
+    <%= f.label "Question" %>
+    <%= f.text_area :body %>
+
+    <%= f.label "Upload a Photo" %>
+    <%= f.file_field :photo %>
+    
+    <%= f.label "Tags" %>
+    <%= f.text_field :tag_list, :placeholder => "Separated by comma" %><br>
+    
+    <%= f.submit "Submit Question" %>
+
+  <% end %>
