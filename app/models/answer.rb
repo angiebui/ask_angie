@@ -7,13 +7,15 @@ class Answer < ActiveRecord::Base
   validates_presence_of :body
 
   attr_accessible :body, :question_id, :user_id
- 
+
   def answer_notification_email
+    # REVIEW: it sounds like this should be AnswerMailer ?
     QuestionMailer.answer_notification(self).deliver
   end
 
+  # REVIEW: I think there is a time_ago or something similar in rails.
   def time_ago
-    time = (Time.now - self.created_at) 
+    time = (Time.now - self.created_at)
     if time > 86400
       "#{time.to_i/86400} days ago"
     elsif time > 7200
@@ -22,7 +24,7 @@ class Answer < ActiveRecord::Base
       "#{time.to_i/3600} hour ago"
     elsif time > 60
       "#{time.to_i/60} minutes ago"
-    else 
+    else
       "just now"
     end
   end
@@ -31,10 +33,12 @@ class Answer < ActiveRecord::Base
     all.sort_by { |answer| -answer.vote_count }
   end
 
+  # REVIEW: move .where("voteable_type = ? AND voteable_id = ? AND upvote = ?", 'Answer', self.id, true).count call
+  # to Vote model and call it here. Maybe Vote.upvotes_for(voteable)
   def vote_count
     upvote = Vote.where("voteable_type = ? AND voteable_id = ? AND upvote = ?", 'Answer', self.id, true).count
     downvote = Vote.where("voteable_type = ? AND voteable_id = ? AND upvote = ?",'Answer', self.id, false).count
-    upvote - downvote 
+    upvote - downvote
   end
 
   def self.search(term)

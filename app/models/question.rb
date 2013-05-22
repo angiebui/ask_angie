@@ -11,8 +11,9 @@ class Question < ActiveRecord::Base
 
   attr_accessible :body, :title, :user_id, :topic_id, :photo, :tag_list
 
+  # REVIEW: see my notes on answer.rb
   def time_ago
-    time = (Time.now - self.created_at) 
+    time = (Time.now - self.created_at)
     if time > 86400
       "#{time.to_i/86400} days ago"
     elsif time > 7200
@@ -21,11 +22,12 @@ class Question < ActiveRecord::Base
       "#{time.to_i/3600} hour ago"
     elsif time > 60
       "#{time.to_i/60} minutes ago"
-    else 
+    else
       "just now"
     end
   end
 
+  # REVIEW: tell me what you're sorting by in the method name.
   def sort
     self.sort_by { |question| question.answers.count }.reverse!
   end
@@ -50,10 +52,12 @@ class Question < ActiveRecord::Base
     end
   end
 
+  # REVIEW: see my notes on the answer.rb
+  # DRY
   def vote_count
     upvote = Vote.where("voteable_type = ? AND voteable_id = ? AND upvote = ?", 'Question', self.id, true).count
     downvote = Vote.where("voteable_type = ? AND voteable_id = ? AND upvote = ?",'Question', self.id, false).count
-    upvote - downvote 
+    upvote - downvote
   end
 
 end

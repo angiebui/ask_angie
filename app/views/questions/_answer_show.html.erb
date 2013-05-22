@@ -1,9 +1,11 @@
+<!-- REVIEW: that view is too big, split it into partials -->
 <div class="answers">
   <h4>Answers</h4>
 
   <% @question.answers.sorted_by_vote.each do |answer| %>
   <div class="answer">
     <div class="votes">
+      <!-- you should move this into a view helper -->
       <% if current_user && current_user.voted?(answer) %>
         <% image_names = current_user.upvoted?(answer) ? ['selected_uparrow', 'downarrow'] : ['uparrow', 'selected_downarrow'] %>
         <div class="vote">
@@ -20,9 +22,9 @@
       <% end %>
     </div>
     <div class="answer-text"><%= answer.body %><br>
-      <small class="byline">posted by 
-        <%= link_to answer.user.username, answer.user %> 
-        <%= answer.time_ago %> 
+      <small class="byline">posted by
+        <%= link_to answer.user.username, answer.user %>
+        <%= answer.time_ago %>
       </small>
     </div>
   </div>
