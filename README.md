@@ -1,4 +1,4 @@
-== Ask Angie
+## Ask Angie
 
 Ask Angie is a fun and easy dating advice site for young professionals. 
 Ask any question, get real answers from people with first-hand experience and share your tips.
