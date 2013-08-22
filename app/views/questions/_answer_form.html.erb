@@ -1,8 +1,10 @@
+<!-- REVIEW: you don need to surround @answer with [] -->
 <%= form_for [@answer] do |f| %>
   <%= f.hidden_field :question_id, :value => @question.id %>
-  <%= f.text_field :body, placeholder: "What are your thoughts?" %> 
+  <%= f.text_field :body, placeholder: "What are your thoughts?" %>
   <%= f.submit "Add answer" %>
 <% end %>
+<!-- REVIEW: please indent correctly -->
   <p>
     <%= flash[:notice] if flash[:notice] %>
   </p>

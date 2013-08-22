@@ -1,6 +1,7 @@
 <h2>Topics</h2>
   <% @topics.each do |topic| %>
-  <p> 
+  <p>
+    <!-- REVIEW: don't use strings for link_to, use named routes -->
     <%= link_to topic.title.capitalize, "/topics/@{topic.title}" %>
   </p>
 <% end %>

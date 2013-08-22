@@ -13,6 +13,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  # REVIEW: if you're not gonna do something now, then don't commit an empty method.
   def scale(width, height)
     # do something
   end

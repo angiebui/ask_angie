@@ -8,29 +8,31 @@
   <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Average+Sans|Sorts+Mill+Goudy|Goudy+Bookletter+1911" %>
 </head>
 <body>
+  <!-- REVIEW: move this into a nav partial -->
  <nav class="nav-bar">
     <h3 class="logo"><%= link_to "Ask Angie", root_path %></h3>
 
-     
-    <div class="search-bar">   
+     <!-- REVIEW: move this into a search_bar partial that gets called inside the nav partial -->
+    <div class="search-bar">
     <%= form_tag(search_questions_path) do %>
     <p>
       <%= text_field_tag(:search, params[:search]) %>
       <%= submit_tag("Search", :name => nil) %>
       </p>
     <% end %>
-    </div> 
+    </div>
+    <!-- REVIEW: indentation should be 2 spaces not 1 -->
     <% if user_signed_in? %>
-     <%= link_to "Sign Out", signout_users_path, :method => :delete %> 
+     <%= link_to "Sign Out", signout_users_path, :method => :delete %>
      <%= link_to "Profile", current_user %>
-     <%= link_to "Ask Question", new_question_path %>  
+     <%= link_to "Ask Question", new_question_path %>
     <% else %>
       <%= link_to "About", about_path %>
       <%= link_to "Join us", new_user_path %>
       <%= link_to "Log in", login_users_path, :method => :get %>
     <% end %>
-  </nav> 
-  
+  </nav>
+
 <div class="container">
   <%= yield %>
 </div>

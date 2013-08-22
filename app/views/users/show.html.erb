@@ -1,3 +1,4 @@
+<!-- REVIEW: move these questions and answers into their own partials call them user_answers and user_questions for calarity -->
 <h2 class="username"> <%= @user.username %> </h2>
 
 <span class="user-answers">
@@ -7,7 +8,7 @@
   <p>
     <%= link_to question.body, question %><br>
     <small>
-      <%= pluralize(question.answers.count, 'answer') %> | 
+      <%= pluralize(question.answers.count, 'answer') %> |
       posted <%= question.time_ago %>
     </small>
   </p>
@@ -22,7 +23,7 @@
   <p>
     <%= link_to answer.body, answer.question %><br>
     <small>
-      <%= answer.vote_count %> votes | 
+      <%= answer.vote_count %> votes |
       posted <%= answer.time_ago %>
     </small>
   </p>

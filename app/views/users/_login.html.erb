@@ -1,3 +1,4 @@
+<!-- REVIEW: that doesn't make sense, why are you creating a new user when you're just logging in? -->
 <%= form_for User.new, :url => { :action => "login"}, :method => :post do |f| %>
   <%= f.text_field :username, :placeholder => "Username" %><br>
   <%= f.password_field :password, :placeholder => "Password" %><br><br>
